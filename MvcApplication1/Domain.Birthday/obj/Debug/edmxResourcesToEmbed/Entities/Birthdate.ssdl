@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BirthdateModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="BirthdateModelStoreContainer">
+    <EntitySet Name="Birthday" EntityType="BirthdateModel.Store.Birthday" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ContactBirthdates" EntityType="BirthdateModel.Store.ContactBirthdates" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_ContactBirthdates_Birthday" Association="BirthdateModel.Store.FK_ContactBirthdates_Birthday">
+      <End Role="Birthday" EntitySet="Birthday" />
+      <End Role="ContactBirthdates" EntitySet="ContactBirthdates" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Birthday">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="Birthdate" Type="date" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="LatActivityDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ContactBirthdates">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ContactID" Type="int" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="LatActivityDate" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_ContactBirthdates_Birthday">
+    <End Role="Birthday" Type="BirthdateModel.Store.Birthday" Multiplicity="0..1" />
+    <End Role="ContactBirthdates" Type="BirthdateModel.Store.ContactBirthdates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Birthday">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="ContactBirthdates">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

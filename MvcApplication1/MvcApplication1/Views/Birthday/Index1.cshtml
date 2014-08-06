@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MvcApplication1.Models.BirthdayModels>
+
+@{
+    ViewBag.Title = "Index";
+}
+using PagedList.MVC;
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm())
+{
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Birthdate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Birthdate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserID}) |
+            @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
+        </td>
+    </tr>
+}
+
+</table>
+@*<div id='Paging' style="text-align:center">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+    of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>*@
+}

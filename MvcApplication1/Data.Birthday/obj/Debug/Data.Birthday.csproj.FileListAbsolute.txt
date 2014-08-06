@@ -1,0 +1,16 @@
+D:\ASP.Net MVC training\MvcApplication1\Data.Birthday\bin\Debug\Data.Birthday.dll.config
+D:\ASP.Net MVC training\MvcApplication1\Data.Birthday\bin\Debug\Data.Birthday.dll
+D:\ASP.Net MVC training\MvcApplication1\Data.Birthday\bin\Debug\Data.Birthday.pdb
+D:\ASP.Net MVC training\MvcApplication1\Data.Birthday\bin\Debug\Domain.Birthday.dll
+D:\ASP.Net MVC training\MvcApplication1\Data.Birthday\bin\Debug\EntityFramework.dll
+D:\ASP.Net MVC training\MvcApplication1\Data.Birthday\bin\Debug\EntityFramework.SqlServer.dll
+D:\ASP.Net MVC training\MvcApplication1\Data.Birthday\bin\Debug\Mvc.Mailer.dll
+D:\ASP.Net MVC training\MvcApplication1\Data.Birthday\bin\Debug\PagedList.dll
+D:\ASP.Net MVC training\MvcApplication1\Data.Birthday\bin\Debug\PagedList.Mvc.dll
+D:\ASP.Net MVC training\MvcApplication1\Data.Birthday\bin\Debug\Domain.Birthday.pdb
+D:\ASP.Net MVC training\MvcApplication1\Data.Birthday\bin\Debug\PagedList.xml
+D:\ASP.Net MVC training\MvcApplication1\Data.Birthday\bin\Debug\PagedList.Mvc.xml
+D:\ASP.Net MVC training\MvcApplication1\Data.Birthday\obj\Debug\Data.Birthday.csprojResolveAssemblyReference.cache
+D:\ASP.Net MVC training\MvcApplication1\Data.Birthday\obj\Debug\Data.Birthday.dll
+D:\ASP.Net MVC training\MvcApplication1\Data.Birthday\obj\Debug\Data.Birthday.pdb
+D:\ASP.Net MVC training\MvcApplication1\Data.Birthday\bin\Debug\EntityFramework.xml

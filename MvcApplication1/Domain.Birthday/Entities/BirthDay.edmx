@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BirthdateModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="BirthdateModelStoreContainer">
+          <EntitySet Name="Birthday" EntityType="BirthdateModel.Store.Birthday" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ContactBirthdates" EntityType="BirthdateModel.Store.ContactBirthdates" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ContactBirthdates_Birthday" Association="BirthdateModel.Store.FK_ContactBirthdates_Birthday">
+            <End Role="Birthday" EntitySet="Birthday" />
+            <End Role="ContactBirthdates" EntitySet="ContactBirthdates" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Birthday">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Birthdate" Type="date" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="LatActivityDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ContactBirthdates">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ContactID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="LatActivityDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_ContactBirthdates_Birthday">
+          <End Role="Birthday" Type="BirthdateModel.Store.Birthday" Multiplicity="0..1" />
+          <End Role="ContactBirthdates" Type="BirthdateModel.Store.ContactBirthdates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Birthday">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ContactBirthdates">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BirthdateModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BirthdateEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Birthdays" EntityType="BirthdateModel.Birthday" />
+          <EntitySet Name="ContactBirthdates" EntityType="BirthdateModel.ContactBirthdate" />
+          <AssociationSet Name="FK_ContactBirthdates_Birthday" Association="BirthdateModel.FK_ContactBirthdates_Birthday">
+            <End Role="Birthday" EntitySet="Birthdays" />
+            <End Role="ContactBirthdates" EntitySet="ContactBirthdates" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Birthday">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Birthdate" Type="DateTime" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="LatActivityDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ContactBirthdates" Relationship="BirthdateModel.FK_ContactBirthdates_Birthday" FromRole="Birthday" ToRole="ContactBirthdates" />
+        </EntityType>
+        <EntityType Name="ContactBirthdate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="LatActivityDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Birthday" Relationship="BirthdateModel.FK_ContactBirthdates_Birthday" FromRole="ContactBirthdates" ToRole="Birthday" />
+        </EntityType>
+        <Association Name="FK_ContactBirthdates_Birthday">
+          <End Role="Birthday" Type="BirthdateModel.Birthday" Multiplicity="0..1" />
+          <End Role="ContactBirthdates" Type="BirthdateModel.ContactBirthdate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Birthday">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ContactBirthdates">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BirthdateModelStoreContainer" CdmEntityContainer="BirthdateEntities">
+          <EntitySetMapping Name="Birthdays">
+            <EntityTypeMapping TypeName="BirthdateModel.Birthday">
+              <MappingFragment StoreEntitySet="Birthday">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="LatActivityDate" ColumnName="LatActivityDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactBirthdates">
+            <EntityTypeMapping TypeName="BirthdateModel.ContactBirthdate">
+              <MappingFragment StoreEntitySet="ContactBirthdates">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="LatActivityDate" ColumnName="LatActivityDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

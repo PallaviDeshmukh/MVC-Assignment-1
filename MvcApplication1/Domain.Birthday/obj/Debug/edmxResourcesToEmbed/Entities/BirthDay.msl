@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BirthdateModelStoreContainer" CdmEntityContainer="BirthdateEntities">
+    <EntitySetMapping Name="Birthdays">
+      <EntityTypeMapping TypeName="BirthdateModel.Birthday">
+        <MappingFragment StoreEntitySet="Birthday">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="LatActivityDate" ColumnName="LatActivityDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactBirthdates">
+      <EntityTypeMapping TypeName="BirthdateModel.ContactBirthdate">
+        <MappingFragment StoreEntitySet="ContactBirthdates">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="LatActivityDate" ColumnName="LatActivityDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,65 @@
+﻿@model MvcApplication1.Models.BirthdayModels
+
+@{
+    ViewBag.Title = "Create";
+}
+      <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/base/jquery-ui.css" rel="stylesheet" />
+@Scripts.Render("~/bundles/jqueryui")
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>BirthdayModels</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserID)
+            @Html.ValidationMessageFor(model => model.UserID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Birthdate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Birthdate)
+            @Html.ValidationMessageFor(model => model.Birthdate)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script type ="text/javascript" >
+$(document).ready(function() {
+    $("#datepicker1").datepicker();
+});
+</script>
+}

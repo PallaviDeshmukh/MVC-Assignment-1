@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BirthdateModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BirthdateEntities1" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Birthdays" EntityType="BirthdateModel.Birthday" />
+    <EntitySet Name="ContactBirthdates" EntityType="BirthdateModel.ContactBirthdate" />
+    <AssociationSet Name="FK_ContactBirthdates_Birthday" Association="BirthdateModel.FK_ContactBirthdates_Birthday">
+      <End Role="Birthday" EntitySet="Birthdays" />
+      <End Role="ContactBirthdates" EntitySet="ContactBirthdates" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Birthday">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Birthdate" Type="DateTime" Precision="0" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="LatActivityDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ContactBirthdates" Relationship="BirthdateModel.FK_ContactBirthdates_Birthday" FromRole="Birthday" ToRole="ContactBirthdates" />
+  </EntityType>
+  <EntityType Name="ContactBirthdate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ContactID" Type="Int32" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="LatActivityDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Birthday" Relationship="BirthdateModel.FK_ContactBirthdates_Birthday" FromRole="ContactBirthdates" ToRole="Birthday" />
+  </EntityType>
+  <Association Name="FK_ContactBirthdates_Birthday">
+    <End Role="Birthday" Type="BirthdateModel.Birthday" Multiplicity="0..1" />
+    <End Role="ContactBirthdates" Type="BirthdateModel.ContactBirthdate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Birthday">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="ContactBirthdates">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
